@@ -1,0 +1,38 @@
+﻿@model FalloutHacking.ViewModels.HackingGameViewModel
+
+@{
+    ViewData["Title"] = "Game Page";
+}
+
+<div class="row">
+    <div class="col-md-8">
+        <h2>Game Start</h2>
+        <table class="table">
+            <thead>Words:</thead>
+
+            @foreach (var word in Model.GameWords)
+            {
+                <tr>
+                    <td>@word</td>
+                </tr>
+            }
+        </table>
+
+        <form method="post">
+            <div class="form-group row">
+                <label class="alert alert-info">
+                    Guesses Left:  @Model.GuessesLeft
+                </label>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-2 col-form-label">Guess</label>
+                <div class="col-md-6">
+                    <input class="form-control" name="wordguess" />
+                </div>
+                <div>
+                    <input type="submit" value="Guess" class="btn btn-primary" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

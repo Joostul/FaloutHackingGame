@@ -28,6 +28,12 @@ namespace FalloutHacking
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
+            services.AddDistributedMemoryCache();
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromDays(1);
+                options.CookieHttpOnly = true;
+            });
             services.AddMvc();
         }
 
@@ -47,6 +53,7 @@ namespace FalloutHacking
                 app.UseExceptionHandler("/Home/Error");
             }
 
+            app.UseSession();
             app.UseStaticFiles();
 
             app.UseMvc(routes =>
