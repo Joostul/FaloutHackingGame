@@ -30,6 +30,7 @@ namespace FalloutHacking.Controllers
         {
             var str = HttpContext.Session.GetString(key);
             _game = JsonConvert.DeserializeObject<HackingGameViewModel>(str);
+            int correctLetters;
 
             _guess = wordGuess.ToUpper();
 
@@ -42,6 +43,9 @@ namespace FalloutHacking.Controllers
                 str = JsonConvert.SerializeObject(_game);
                 HttpContext.Session.SetString(key, str);
 
+                var wordChecker = new WordChecker();
+                correctLetters = wordChecker.GetCorrectLetters(_guess, _game);
+                _game.CorrectLetters = correctLetters;
 
                 if (_game.GuessesLeft > 0)
                 {

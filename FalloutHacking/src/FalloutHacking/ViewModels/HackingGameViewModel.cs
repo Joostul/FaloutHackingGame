@@ -10,5 +10,6 @@ namespace FalloutHacking.ViewModels
         public int GuessesLeft;
         public List<string> GameWords;
         public string WinningWord;
+        public int CorrectLetters;
     }
 }
